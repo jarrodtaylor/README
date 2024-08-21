@@ -11,8 +11,22 @@ defmodule ReadMe.Weblog.Repo do
 	end
 	
 	def all do
-		"#{ReadMe.weblog_dir}/**/*.md"
-		|> Path.wildcard
-		|> Enum.map(&Article.compile/1)
+		fn ->
+			"#{ReadMe.weblog_dir}/**/*.md"
+			|> Path.wildcard
+			|> Enum.map(&Article.compile/1)
+		end
+		|> _cache(:all)
+	end
+	
+	defp _cache(query, key) do
+		case :ets.lookup(:weblog, key) do
+			[] ->
+				data = query.()
+				:ets.insert(:weblog, {key, data})
+				data
+			
+			[{_key, data}] -> data
+		end
 	end
 end
