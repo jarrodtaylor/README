@@ -1,0 +1,12 @@
+{
+	"image": "mcr.microsoft.com/devcontainers/universal",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/elixir-asdf:2": {}
+	},
+	"postCreateCommand": "bash -i -c 'mix archive.install hex phx_new --force'",
+	"customizations": {
+		"vscode": {
+			"extensions": ["mjmcloug.vscode-elixir", "phoenixframework.phoenix"]
+		}
+	}
+}
