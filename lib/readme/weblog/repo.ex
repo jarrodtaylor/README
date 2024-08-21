@@ -29,6 +29,24 @@ defmodule ReadMe.Weblog.Repo do
 		|> _cache(:feed)
 	end
 	
+	def index do
+		fn ->
+			__MODULE__.all
+			|> Enum.filter(&(&1.source == nil))
+			|> Enum.map(fn article ->
+				%{
+					href: article.href,
+					published: article.published,
+					title: article.title,
+					updated: article.updated
+				}
+			end)
+			|> Enum.group_by(&Date.beginning_of_month(&1.published))
+			|> Enum.reverse
+		end
+		|> _cache(:index)
+	end
+	
 	def recents do
 		fn ->
 			__MODULE__.all

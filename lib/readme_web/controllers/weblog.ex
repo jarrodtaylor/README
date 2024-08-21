@@ -10,7 +10,7 @@ defmodule ReadMeWeb.WeblogController do
 	end
 	
 	def index(conn, _params) do
-		render(conn, :index)
+		render(conn, :index, articles: Repo.index, page_title: "Weblog", style: "weblog index")
 	end
 
 	def recents(conn, _params) do
@@ -60,7 +60,17 @@ defmodule ReadMeWeb.WeblogHTML do
 	
 	def index(assigns) do
 		~H"""
-		Index
+		<section :for={{month, articles} <- @articles}>
+			<.link href={"/weblog/archive/#{Calendar.strftime(month, "%Y/%m")}"}>
+				<.time date={month} format={"%B %Y"} />
+			</.link>
+			<ul>
+				<li :for={article <- articles}>
+					<.link href={raw(article.href)}><%= article.title %></.link>
+					<.time relative date={article.published} format={"%A, %B %d, %Y"} />
+				</li>
+			</ul>
+		</section>
 		"""
 	end
 end

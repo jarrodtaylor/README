@@ -2,7 +2,6 @@
 title: Foo Bar
 published: 2024-08-20T09:00:00
 updated: 2024-08-21T09:00:00
-source: https://example.com
 ---
 
 You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it
