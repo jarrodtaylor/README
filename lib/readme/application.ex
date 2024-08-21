@@ -7,7 +7,8 @@ defmodule ReadMe.Application do
 			ReadMeWeb.Telemetry,
 			{DNSCluster, query: Application.get_env(:read_me, :dns_cluster_query) || :ignore},
 			{Phoenix.PubSub, name: ReadMe.PubSub},
-			ReadMeWeb.Endpoint ]
+			ReadMeWeb.Endpoint,
+			ReadMe.Weblog.Repo ]
 		
 		opts = [strategy: :one_for_one, name: ReadMe.Supervisor]
 		Supervisor.start_link(children, opts)
