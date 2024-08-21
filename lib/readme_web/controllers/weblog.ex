@@ -11,7 +11,14 @@ defmodule ReadMeWeb.WeblogController do
 			page_title: "Weblog ∈ #{date}",
 			style: "weblog articles")
 	end
-
+	
+	def article(conn, %{"year" => year, "month" => month, "slug" => slug}) do
+		case Repo.article(ReadMeWeb.url("/weblog/#{year}/#{month}/#{slug}")) do
+			nil -> _not_found(conn)
+			article -> _article(conn, article)
+		end
+	end
+	
 	def feed(conn, _params) do
 		conn
 		|> put_resp_content_type("application/atom+xml")
@@ -24,11 +31,33 @@ defmodule ReadMeWeb.WeblogController do
 			page_title: "Weblog",
 			style: "weblog index")
 	end
-
+	
+	def linked(conn, %{"year" => year, "month" => month, "slug" => slug}) do
+		case Repo.article(ReadMeWeb.url("/weblog/linked/#{year}/#{month}/#{slug}")) do
+			nil -> _not_found(conn)
+			article -> _article(conn, article)
+		end
+	end
+	
 	def recents(conn, _params) do
 		render(conn, :articles,
 			articles: Repo.recents,
 			style: "weblog articles")
+	end
+	
+	defp _article(conn, article) do
+		render(conn, :article,
+			article: article,
+			page_title: "#{article.title}",
+			style: "weblog article",
+			canonical: nil)
+	end
+	
+	defp _not_found(conn) do
+		conn
+		|> put_status(:not_found)
+		|> put_view(ReadMeWeb.ErrorHTML)
+		|> render(:"404")
 	end
 end
 

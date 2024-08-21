@@ -21,6 +21,8 @@ defmodule ReadMeWeb.Router do
 		get "/weblog", WeblogController, :index
 		get "/weblog/feed", WeblogController, :feed
 		get "/weblog/archive/:year/:month", WeblogController, :archive
+		get "/weblog/linked/:year/:month/:slug", WeblogController, :linked
+		get "/weblog/:year/:month/:slug", WeblogController, :article
 	end
 	
 	if Application.compile_env(:read_me, :dev_routes) do

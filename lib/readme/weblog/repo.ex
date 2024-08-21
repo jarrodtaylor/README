@@ -27,6 +27,8 @@ defmodule ReadMe.Weblog.Repo do
 		|> Enum.reverse
 	end
 	
+	def article(href), do: __MODULE__.all |> Enum.find(&(&1.href == href))
+	
 	def feed do
 		fn ->
 			__MODULE__.all
