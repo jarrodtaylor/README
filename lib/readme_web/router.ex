@@ -14,7 +14,7 @@ defmodule ReadMeWeb.Router do
 	scope "/", ReadMeWeb do
 		pipe_through :browser
 		
-		get "/", PageController, :home
+		get "/readme", PageController, :readme
 	end
 	
 	if Application.compile_env(:read_me, :dev_routes) do
