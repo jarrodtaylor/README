@@ -21,6 +21,7 @@ config :read_me, ReadMeWeb.Endpoint,
 	config :read_me, ReadMeWeb.Endpoint,
 		live_reload: [
 			patterns: [
+				~r"priv/weblog/.*(md)$",
 				~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
 				~r"lib/read_me_web/(controllers|live|components)/.*(ex|heex)$" ]]
 	
