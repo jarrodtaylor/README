@@ -5,5 +5,5 @@ end
 
 defmodule ReadMeWeb.PageHTML do
 	use ReadMeWeb, :html
-	embed_templates "../pages/*"
+	embed_templates "templates/*"
 end

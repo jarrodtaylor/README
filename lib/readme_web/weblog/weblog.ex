@@ -120,8 +120,6 @@ end
 
 defmodule ReadMeWeb.WeblogXML do
 	use ReadMeWeb, :html
-	
-	embed_templates "../feeds/*"
-	
+	embed_templates "feeds/*"
 	defp format_date(date), do: DateTime.to_iso8601(date)
 end
