@@ -1,0 +1,17 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "mix setup"
+    },
+    "clean" : {
+      "enabled" : true,
+      "script" : "rm -rf _build deps"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "mix phx.server"
+    }
+  },
+  "openLogOnRun" : "fail"
+}
