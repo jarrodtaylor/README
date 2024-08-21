@@ -4,6 +4,6 @@ defmodule ReadMeWeb.PageController do
 end
 
 defmodule ReadMeWeb.PageHTML do
-	use ReadMeWeb, :html;
+	use ReadMeWeb, :html
 	embed_templates "../pages/*"
 end

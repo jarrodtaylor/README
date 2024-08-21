@@ -21,7 +21,7 @@ defmodule ReadMeWeb do
 	def controller do
 		quote do
 			use Phoenix.Controller,
-				formats: [:html, :json],
+				formats: [:html, :xml],
 				layouts: [html: ReadMeWeb.Layouts]
 			import Plug.Conn
 			unquote(verified_routes())

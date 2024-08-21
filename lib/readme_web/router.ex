@@ -19,6 +19,7 @@ defmodule ReadMeWeb.Router do
 		get "/readme", PageController, :readme
 		
 		get "/weblog", WeblogController, :index
+		get "/weblog/feed", WeblogController, :feed
 	end
 	
 	if Application.compile_env(:read_me, :dev_routes) do

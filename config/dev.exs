@@ -23,7 +23,7 @@ config :read_me, ReadMeWeb.Endpoint,
 			patterns: [
 				~r"priv/weblog/.*(md)$",
 				~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
-				~r"lib/read_me_web/(controllers|live|components)/.*(ex|heex)$" ]]
+				~r"lib/read_me_web/(controllers|live|components|feeds|pages)/.*(ex|eex|heex)$" ]]
 	
 	config :read_me,
 		cache_control: "public, max-age=0",

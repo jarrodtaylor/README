@@ -15,8 +15,18 @@ defmodule ReadMe.Weblog.Repo do
 			"#{ReadMe.weblog_dir}/**/*.md"
 			|> Path.wildcard
 			|> Enum.map(&Article.compile/1)
+			|> Enum.sort(&(&1.published >= &2.published))
 		end
 		|> _cache(:all)
+	end
+	
+	def feed do
+		fn ->
+			__MODULE__.all
+			|> Enum.take(100)
+			|> Enum.map(&(%Article{&1 | updated: if(&1.updated, do: &1.updated, else: &1.published)}))
+		end
+		|> _cache(:feed)
 	end
 	
 	defp _cache(query, key) do
