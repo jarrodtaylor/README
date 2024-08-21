@@ -24,4 +24,6 @@ config :read_me, ReadMeWeb.Endpoint,
 				~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
 				~r"lib/read_me_web/(controllers|live|components)/.*(ex|heex)$" ]]
 	
-	config :read_me, dev_routes: true
+	config :read_me,
+		cache_control: "public, max-age=0",
+		dev_routes: true
