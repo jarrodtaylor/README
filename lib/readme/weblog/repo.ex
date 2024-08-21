@@ -20,6 +20,13 @@ defmodule ReadMe.Weblog.Repo do
 		|> _cache(:all)
 	end
 	
+	def archive(year, month) do
+		__MODULE__.all()
+		|> Enum.filter(&(Calendar.strftime(&1.published, "%Y-%m") == "#{year}-#{month}"))
+		|> Enum.group_by(&DateTime.to_date(&1.published))
+		|> Enum.reverse
+	end
+	
 	def feed do
 		fn ->
 			__MODULE__.all

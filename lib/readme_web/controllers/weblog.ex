@@ -3,6 +3,15 @@ defmodule ReadMeWeb.WeblogController do
 	
 	alias ReadMe.Weblog.Repo
 	
+	def archive(conn, %{"year" => year, "month" => month}) do
+		date = Date.from_iso8601!("#{year}-#{month}-01") |> Calendar.strftime("%b %Y")
+	
+		render(conn, :articles,
+			articles: Repo.archive(year, month),
+			page_title: "Weblog ∈ #{date}",
+			style: "weblog articles")
+	end
+
 	def feed(conn, _params) do
 		conn
 		|> put_resp_content_type("application/atom+xml")
@@ -10,11 +19,16 @@ defmodule ReadMeWeb.WeblogController do
 	end
 	
 	def index(conn, _params) do
-		render(conn, :index, articles: Repo.index, page_title: "Weblog", style: "weblog index")
+		render(conn, :index,
+			articles: Repo.index,
+			page_title: "Weblog",
+			style: "weblog index")
 	end
 
 	def recents(conn, _params) do
-		render(conn, :articles, articles: Repo.recents, style: "weblog articles")
+		render(conn, :articles,
+			articles: Repo.recents,
+			style: "weblog articles")
 	end
 end
 
