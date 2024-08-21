@@ -1,4 +1,6 @@
 defmodule ReadMeWeb do
+	def url(path), do: (ReadMe.config(:domain) || ReadMeWeb.Endpoint.url) <> path
+	
 	def static_paths, do: ~w(assets downloads fonts images favicon.ico robots.txt)
 	
 	def router do

@@ -1,5 +1,7 @@
 import Config
 
+config :elixir, time_zone_database: Tzdata.TimeZoneDatabase
+
 config :esbuild,
 	version: "0.17.11",
 	read_me: [
@@ -23,7 +25,9 @@ config :read_me, ReadMeWeb.Endpoint,
 	pubsub_server: ReadMe.PubSub,
 	live_view: [signing_salt: "4rESmtSW"]
 
-config :read_me, generators: [timestamp_type: :utc_datetime]
+config :read_me,
+	generators: [timestamp_type: :utc_datetime],
+	time_zone: "America/New_York"
 
 env_config = if config_env() == :prod, do: "prod.exs", else: "dev.exs"
 import_config(env_config)
