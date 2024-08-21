@@ -29,6 +29,16 @@ defmodule ReadMe.Weblog.Repo do
 		|> _cache(:feed)
 	end
 	
+	def recents do
+		fn ->
+			__MODULE__.all
+			|> Enum.take(100)
+			|> Enum.group_by(&DateTime.to_date(&1.published))
+			|> Enum.reverse
+		end
+		|> _cache(:recents)
+	end
+	
 	defp _cache(query, key) do
 		case :ets.lookup(:weblog, key) do
 			[] ->

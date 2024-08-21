@@ -67,9 +67,6 @@ body {
 	line-height: 1.5rem;
 	margin: 0; }
 
-body.error {
-	text-align: center !important; }
-
 h1, h2, h3 {
 	color: var(--foreground);
 	font-weight: bold;
@@ -223,3 +220,6 @@ footer {
 	font-size: 1.5rem;
 	padding: 3rem;
 	text-align: center; }
+
+.error {
+	text-align: center !important; }
