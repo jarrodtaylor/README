@@ -29,5 +29,4 @@ config :read_me,
 	generators: [timestamp_type: :utc_datetime],
 	time_zone: "America/New_York"
 
-env_config = if config_env() == :prod, do: "prod.exs", else: "dev.exs"
-import_config(env_config)
+import_config "#{config_env()}.exs"

@@ -20,8 +20,7 @@
 				return id }
 		if (!window.cancelAnimationFrame)
 			window.cancelAnimationFrame = function (id) {
-				clearTimeout(id) }
-	})()
+				clearTimeout(id) } })()
 	
 	var canvas,
 		currentProgress,
@@ -82,8 +81,8 @@
 				if (showing) return
 				if (delay) {
 					if (delayTimerId) return
-					delayTimerId = setTimeout(() => topbar.show(), delay)
-				} else  {
+					delayTimerId = setTimeout(() => topbar.show(), delay) }
+				else  {
 					showing = true
 					if (fadeTimerId !== null) window.cancelAnimationFrame(fadeTimerId)
 					if (!canvas) createCanvas()
@@ -94,10 +93,7 @@
 						(function loop() {
 							progressTimerId = window.requestAnimationFrame(loop)
 							topbar.progress("+" + 0.05 * Math.pow(1 - Math.sqrt(currentProgress), 2))
-						})()
-					}
-				}
-			},
+						})() } } },
 			progress: function (to) {
 				if (typeof to === "undefined") return currentProgress
 				if (typeof to === "string") {
@@ -122,16 +118,12 @@
 						if (canvas.style.opacity <= 0.05) {
 							canvas.style.display = "none"
 							fadeTimerId = null
-							return }
-					}
-					fadeTimerId = window.requestAnimationFrame(loop)
-				})()
-			},
-		}
+							return } }
+					fadeTimerId = window.requestAnimationFrame(loop) })() }, }
 	
 	if (typeof module === "object" && typeof module.exports === "object") {
-		module.exports = topbar
-	} else if (typeof define === "function" && define.amd) {
-		define(function () { return topbar })
-	} else { this.topbar = topbar }
+		module.exports = topbar }
+	else if (typeof define === "function" && define.amd) {
+		define(function () { return topbar }) }
+	else { this.topbar = topbar }
 }.call(this, window, document))
