@@ -10,8 +10,7 @@ defmodule ReadMe.Weblog.Article do
 			published: _frontmatter(yaml, "published") |> _as_date,
 			source: _frontmatter(yaml, "source"),
 			title: _frontmatter(yaml, "title"),
-			updated: _frontmatter(yaml, "updated") |> _as_date
-		}
+			updated: _frontmatter(yaml, "updated") |> _as_date }
 	end
 	
 	defp _as_date(date) do
@@ -30,11 +29,9 @@ defmodule ReadMe.Weblog.Article do
 		end
 	end
 	
-	defp _href(path) do
-		path
+	defp _href(path), do: path
 		|> String.replace(ReadMe.weblog_dir, ReadMeWeb.url("/weblog"))
 		|> String.replace(".md", "")
-	end
 	
 	defp _read(path) do
 		[yaml, md] = path
